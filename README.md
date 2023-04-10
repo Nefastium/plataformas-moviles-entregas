@@ -1,4 +1,4 @@
-Requisitos Recomendados
+#Requisitos Recomendados
 SO: Windows 10/11
 Procesador: Intel Core i7-8700K o AMD Ryzen 5 3600X
 Memoria: 16 GB de RAM

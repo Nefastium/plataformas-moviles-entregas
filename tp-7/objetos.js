@@ -159,6 +159,14 @@ console.log("soloMayoresDeEdad()", soloMayoresDeEdad(listaPersonasEjemplo))
  * - una objeto con la persona de mayor edad en todo el listado. En caso de que hayan 2 personas con la misma edad, se puede retornar la primera que aparezca en el listado.
  */
 function laPersonaMayor(listaDePersonas) {
-    //
+    let mayor = -Infinity
+    let guardar = 0
+    for (let i = 0; i < listaDePersonas.length; i++){
+        if(mayor < listaDePersonas[i].edad){
+            mayor = listaDePersonas[i].edad
+            guardar = i
+        }
+    }
+    return listaDePersonas[guardar];
 }
 console.log("laPersonaMayor()", laPersonaMayor(listaPersonasEjemplo));

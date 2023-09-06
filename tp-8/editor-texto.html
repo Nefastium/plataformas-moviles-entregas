@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Editor de Texto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style type="text/css">
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>Editor de Texto</h1>
+        <p class="lead">El objetivo es construir un muy simple Editor de Texto donde se puedan aplicar distintos estilos a un texto.</p>
+        <h2 class="h3">Objetivos Adicionales</h2>
+        <ol>
+            <li>Agregar un nuevo botón con un estilo adicional (puede ser para aplicar un color al texto, por ejemplo).</li>
+            <li>Agregar la posibilidad de editar el texto, con un input para escribir un nuevo texto.</li>
+            <li>Mostrar el estado actual de cada estilo en el botón (si está activado o no). Puede ser cambiando el color o el texto del propio botón.</li>
+            <li>Agregar la funcionalidad de modificar el tamaño del texto.</li>
+        </ol>
+
+        <div class="card">
+            <div class="card-body">
+                <h2>Texto</h2>
+
+                <div id="contenido-texto">
+                    <p class="texto" id="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum auctor libero, vel imperdiet est. Etiam blandit facilisis ex, nec cursus metus pharetra quis. Fusce imperdiet nisl nibh, ac aliquet ante elementum vitae.</p>
+                </div>
+                
+                <hr class="hr">
+
+                <h2>Agregar Texto</h2>
+                <form id="form-producto">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" aria-label="Nombre del Producto">
+                        <button class="btn btn-primary" type="submit">Agregar Texto</button>
+                    </div>
+                </form>
+
+                <h2>Opciones de Formato</h2>
+                <div class="row">
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-negrita" class="btn d-block w-100 btn-primary" data-funcion="negrita">
+                            Bold (Negrita)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-cursiva" class="btn d-block w-100 btn-primary" data-funcion="cursiva">
+                            Italic (Cursiva)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-subrayado" class="btn d-block w-100 btn-primary" data-funcion="subrayado">
+                            Underline (Subrayado)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-color" class="btn d-block w-100 btn-primary" data-funcion="color">
+                            Cambiar color
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1 text-center">
+                        <label for="font-size-slider">Tamaño de Letra</label>
+                        <input type="range" id="font-size-slider" min="10" max="50" value="16">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        /**
+         * funcionNegrita()
+         * esta función se va a llamar cuando el usuario selecciona la opción Bold (negrita).
+         */
+        function funcionNegrita() {
+            // su implementación
+            var texto = document.getElementById("contenido-texto");
+            var btnNegrita = document.getElementById("btn-negrita");
+            if (texto.style.fontWeight === "bold") {
+                texto.style.fontWeight = "normal";
+                btnNegrita.style.backgroundColor = "";
+            } else {
+                texto.style.fontWeight = "bold";
+                btnNegrita.style.backgroundColor = "blue";
+            }
+        }
+
+        /**
+         * funcionCursiva()
+         * esta función se va a llamar cuando el usuario selecciona la opción Bold (negrita).
+         */
+        function funcionCursiva() {
+            // su implementación
+            var texto = document.getElementById("contenido-texto");
+            var btnCursiva = document.getElementById("btn-cursiva");
+            if (texto.style.fontStyle === "italic"){
+                texto.style.fontStyle = "normal";
+                btnCursiva.style.backgroundColor = "";
+            } else{
+                texto.style.fontStyle = "italic";
+                btnCursiva.style.backgroundColor = "blue";
+            }
+        }
+
+        /**
+         * funcionSubrayado()
+         * esta función se va a llamar cuando el usuario selecciona la opción Bold (negrita).
+         */
+        function funcionSubrayado() {
+            // su implementación
+            var texto = document.getElementById("contenido-texto");
+            var btnSubrayado = document.getElementById("btn-subrayado");
+            if (texto.style.textDecoration === "underline"){
+                texto.style.textDecoration = "";
+                btnSubrayado.style.backgroundColor = "";
+            } else{
+                texto.style.textDecoration = "underline";
+                btnSubrayado.style.backgroundColor = "blue";
+            }
+        }
+
+        function funcionColor() {
+            // su implementación
+            var texto = document.getElementById("contenido-texto");
+            var btnColor = document.getElementById("btn-color")
+            if (texto.style.color === "red"){
+                texto.style.color = "";
+                btnColor.style.backgroundColor = "";
+            } else{
+                texto.style.color = "red";
+                btnColor.style.backgroundColor = "blue";
+            }
+        }
+
+        function handlerBoton(e) {
+            const funcionBoton = e.target.dataset.funcion;
+            switch (funcionBoton) {
+                case 'negrita':
+                    funcionNegrita();
+                    break;
+                case 'cursiva':
+                    funcionCursiva();
+                    break;
+                case 'subrayado':
+                    funcionSubrayado();
+                    break;
+                case 'color':
+                    funcionColor();
+                    break;
+            }
+        }
+
+        function agregarTexto(texto) {
+            var contenedor = document.getElementById("contenido-texto");
+            contenedor.innerHTML += `<p class = "texto" id = "texto"> ${texto} </p>`;
+        }
+
+        function handlerFormulario(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const texto = input.value;
+            input.value = "";
+            agregarTexto(texto);
+        }
+
+        document.querySelector('form').addEventListener('submit', handlerFormulario);
+        document.querySelectorAll('button.btn').forEach(e => e.addEventListener('click', handlerBoton));
+
+        var slider = document.getElementById("font-size-slider");
+        var sampleText = document.getElementById("contenido-texto");
+
+        slider.addEventListener("input", function() {
+            var fontSize = slider.value + "px";
+            sampleText.style.fontSize = fontSize;
+        });
+    </script>
+</body>
+</html>
